@@ -21,7 +21,7 @@ type Int32Timeline map[time.Time]int32
 type Int64Timeline map[time.Time]int64
 
 // BigIntTimeline represents a time-index series with big.Int value
-type BigIntTimeline map[time.Time]big.Int
+type BigIntTimeline map[time.Time]*big.Int
 
 // Float32Timeline represents a time-index series with int64 value
 type Float32Timeline map[time.Time]float32
@@ -30,30 +30,30 @@ type Float32Timeline map[time.Time]float32
 type Float64Timeline map[time.Time]float64
 
 // BigFloatTimeline represents a time-index series with big.Float value
-type BigFloatTimeline map[time.Time]big.Float
+type BigFloatTimeline map[time.Time]*big.Float
 
 // BigRatTimeline represents a time-index series with big.Rat value
-type BigRatTimeline map[time.Time]big.Float
+type BigRatTimeline map[time.Time]*big.Rat
 
 // Implement ISeries
-func (s GeneralTimeline) series()  {}
-func (s IntTimeline) series()      {}
-func (s Int16Timeline) series()    {}
-func (s Int32Timeline) series()    {}
-func (s Int64Timeline) series()    {}
-func (s BigIntTimeline) series()   {}
-func (s Float32Timeline) series()  {}
-func (s Float64Timeline) series()  {}
-func (s BigFloatTimeline) series() {}
-func (s BigRatTimeline) series()   {}
+func (s *GeneralTimeline) series()  {}
+func (s *IntTimeline) series()      {}
+func (s *Int16Timeline) series()    {}
+func (s *Int32Timeline) series()    {}
+func (s *Int64Timeline) series()    {}
+func (s *BigIntTimeline) series()   {}
+func (s *Float32Timeline) series()  {}
+func (s *Float64Timeline) series()  {}
+func (s *BigFloatTimeline) series() {}
+func (s *BigRatTimeline) series()   {}
 
 // Implement ICalculable
-func (s IntTimeline) calculable()      {}
-func (s Int16Timeline) calculable()    {}
-func (s Int32Timeline) calculable()    {}
-func (s Int64Timeline) calculable()    {}
-func (s BigIntTimeline) calculable()   {}
-func (s Float32Timeline) calculable()  {}
-func (s Float64Timeline) calculable()  {}
-func (s BigFloatTimeline) calculable() {}
-func (s BigRatTimeline) calculable()   {}
+func (s *IntTimeline) calculable()      {}
+func (s *Int16Timeline) calculable()    {}
+func (s *Int32Timeline) calculable()    {}
+func (s *Int64Timeline) calculable()    {}
+func (s *BigIntTimeline) calculable()   {}
+func (s *Float32Timeline) calculable()  {}
+func (s *Float64Timeline) calculable()  {}
+func (s *BigFloatTimeline) calculable() {}
+func (s *BigRatTimeline) calculable()   {}
