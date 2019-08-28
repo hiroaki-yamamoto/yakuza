@@ -9,3 +9,9 @@ type ICalculable interface {
 type ISeries interface {
 	series()
 }
+
+// ICalculableSeries represents the provided structure is calculable, and Series.
+type ICalculableSeries interface {
+	calculable()
+	series()
+}
