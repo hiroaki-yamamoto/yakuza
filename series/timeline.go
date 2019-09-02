@@ -18,12 +18,12 @@ type BigFloatTimeline map[time.Time]*big.Float
 type BigRatTimeline map[time.Time]*big.Rat
 
 // Implement ISeries
-func (s *GeneralTimeline) series()  {}
-func (s *BigIntTimeline) series()   {}
-func (s *BigFloatTimeline) series() {}
-func (s *BigRatTimeline) series()   {}
+func (s GeneralTimeline) series()  {}
+func (s BigIntTimeline) series()   {}
+func (s BigFloatTimeline) series() {}
+func (s BigRatTimeline) series()   {}
 
 // Implement ICalculable
-func (s *BigIntTimeline) calculable()   {}
-func (s *BigFloatTimeline) calculable() {}
-func (s *BigRatTimeline) calculable()   {}
+func (s BigIntTimeline) calculable()   {}
+func (s BigFloatTimeline) calculable() {}
+func (s BigRatTimeline) calculable()   {}

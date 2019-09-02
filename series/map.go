@@ -15,12 +15,12 @@ type BigFloatMapSeries map[string]*big.Float
 type BigRatMapSeries map[string]*big.Rat
 
 // Implement ISeries
-func (s *GeneralMapSeries) series()  {}
-func (s *BigIntMapSeries) series()   {}
-func (s *BigFloatMapSeries) series() {}
-func (s *BigRatMapSeries) series()   {}
+func (s GeneralMapSeries) series()  {}
+func (s BigIntMapSeries) series()   {}
+func (s BigFloatMapSeries) series() {}
+func (s BigRatMapSeries) series()   {}
 
 // Implement ICalculable
-func (s *BigIntMapSeries) calculable()   {}
-func (s *BigFloatMapSeries) calculable() {}
-func (s *BigRatMapSeries) calculable()   {}
+func (s BigIntMapSeries) calculable()   {}
+func (s BigFloatMapSeries) calculable() {}
+func (s BigRatMapSeries) calculable()   {}

@@ -27,8 +27,8 @@ var _ = Describe("Normal Series", func() {
 					sol[i] = big.NewInt(0).Add(arr1[i], arr2[i])
 				}
 				It("should successfully and correct result.", func() {
-					result := series.Add(&arr1, &arr2, nil)
-					Expect(*(result.(*series.BigIntSeries))).To(Equal(sol))
+					result := series.Add(arr1, arr2, nil)
+					Expect(result.(series.BigIntSeries)).To(Equal(sol))
 				})
 			})
 		})

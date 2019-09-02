@@ -15,12 +15,12 @@ type BigFloatSeries []*big.Float
 type BigRatSeries []*big.Rat
 
 // All Series must implements series to follow ISeries
-func (s *GeneralSeries) series()  {}
-func (s *BigIntSeries) series()   {}
-func (s *BigFloatSeries) series() {}
-func (s *BigRatSeries) series()   {}
+func (s GeneralSeries) series()  {}
+func (s BigIntSeries) series()   {}
+func (s BigFloatSeries) series() {}
+func (s BigRatSeries) series()   {}
 
 // Integer related series must implement calculable to follow ICalculable.
-func (s *BigIntSeries) calculable()   {}
-func (s *BigFloatSeries) calculable() {}
-func (s *BigRatSeries) calculable()   {}
+func (s BigIntSeries) calculable()   {}
+func (s BigFloatSeries) calculable() {}
+func (s BigRatSeries) calculable()   {}
