@@ -24,12 +24,15 @@ func Add(
 	opB := b.(BigIntSeries)
 	exLen := int(math.Min(float64(len(opA)), float64(len(opB))))
 	res := make(BigIntSeries, exLen)
-	numSeq := runtime.NumCPU() + 1
-	seqLen := exLen / numSeq
-	fch := make(chan fragment, numSeq)
-	// defer close(fch)
+	numJobs := runtime.NumCPU() + 1
+	seqLen := exLen / numJobs
+	hasExtra := 0
+	if exLen%numJobs != 0 {
+		hasExtra++
+	}
+	fch := make(chan fragment, numJobs)
 	var w sync.WaitGroup
-	w.Add(exLen / seqLen)
+	w.Add(numJobs + hasExtra)
 	for i := 0; i < exLen; i += seqLen {
 		_end := int(math.Min(float64(i+seqLen), float64(exLen)))
 		go func(

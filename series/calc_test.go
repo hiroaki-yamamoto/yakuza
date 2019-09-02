@@ -3,6 +3,7 @@ package series_test
 import (
 	"math/big"
 	"math/rand"
+	"runtime"
 	"time"
 
 	. "github.com/onsi/ginkgo"
@@ -15,22 +16,30 @@ var random = rand.New(rand.NewSource(time.Now().UTC().UnixNano()))
 
 var _ = Describe("Normal Series", func() {
 	Describe("Addition", func() {
-		Context("with same size integers", func() {
-			const len = 100
-			arr1 := make(series.BigIntSeries, len)
-			arr2 := make(series.BigIntSeries, len)
-			sol := make(series.BigIntSeries, len)
-			Context("full filled with random integers", func() {
-				for i := 0; i < len; i++ {
-					arr1[i] = big.NewInt(random.Int63())
-					arr2[i] = big.NewInt(random.Int63())
-					sol[i] = big.NewInt(0).Add(arr1[i], arr2[i])
+		Context("Same size integers", func() {
+			generateTests := func(sz int) func() {
+				return func() {
+					arr1 := make(series.BigIntSeries, sz)
+					arr2 := make(series.BigIntSeries, sz)
+					sol := make(series.BigIntSeries, sz)
+					Context("Full filled with random integers", func() {
+						for i := 0; i < sz; i++ {
+							arr1[i] = big.NewInt(random.Int63())
+							arr2[i] = big.NewInt(random.Int63())
+							sol[i] = big.NewInt(0).Add(arr1[i], arr2[i])
+						}
+						It("should successfully and correct result.", func() {
+							result := series.Add(arr1, arr2, nil)
+							Expect(result.(series.BigIntSeries)).To(Equal(sol))
+						})
+					})
 				}
-				It("should successfully and correct result.", func() {
-					result := series.Add(arr1, arr2, nil)
-					Expect(result.(series.BigIntSeries)).To(Equal(sol))
-				})
-			})
+			}
+			Context(
+				"Has extra items",
+				generateTests(runtime.NumCPU()*100+rand.Intn(runtime.NumCPU()-1)+1),
+			)
+			Context("Has no extra items", generateTests(runtime.NumCPU()*100))
 		})
 	})
 })
