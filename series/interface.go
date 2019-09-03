@@ -5,7 +5,7 @@ type ICalculable interface {
 	calculable()
 }
 
-// ISeries represents the provided structure is Seroes.
+// ISeries represents the provided structure is Series.
 type ISeries interface {
 	series()
 }
