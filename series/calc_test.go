@@ -50,6 +50,9 @@ var _ = Describe("Normal Series", func() {
 					// 		}
 					// 	})
 					// 	Context("without fillValue", func(){
+					// 		It("Should raise ValueError.", func() {
+
+					// 		})
 					// 	})
 					// })
 				}
